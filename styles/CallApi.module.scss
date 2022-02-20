@@ -9,10 +9,17 @@
     width: 75%;
     margin: auto;
     border-style: dashed;
-  }
+}
 
-.buttonDiv{
-    margin-top: 50px;
+.header{
+    margin-top: 40px;
+    margin-bottom: 20px;
+    font-size: 50px;
+    font-weight: 900;
+}
+
+.buttonDiv {
+    margin-top: 20px;
     height: 120px;
     width: 100%;
     border-style: dashed;
@@ -25,24 +32,25 @@
 .button {
     border-radius: 15%;
     border-width: 20px;
-}   
-.button:hover,
-.button:active,
-.button.focus{
-    color: #0070f3;
-    border-color: #0070f3;  
+
+    &:hover,
+    &:active,
+    &:focus {
+        color: #0070f3;
+        border-color: #0070f3;
+    }
 }
-.input{
+
+.input {
     height: 80%;
-    flex-grow:1;
+    flex-grow: 1;
     margin-left: 30px;
     margin-right: 30px;
     font-size: 50px;
     padding-left: 20px;
 }
 
-
-.bottomDiv{
+.bottomDiv {
     border-style: dashed;
     border-color: #ce293f;
     height: 100%;
