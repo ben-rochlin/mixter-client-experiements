@@ -10,7 +10,7 @@ const CallApi = () => {
         <input type="text" className={styles.input} />
       </header>
       <div className={styles.bottomDiv}>
-        bottom div
+        <h1 className={styles.bottomHeader}>Bottom Div</h1>
       </div>
     </div>
   )
