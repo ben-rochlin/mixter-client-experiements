@@ -1,28 +1,34 @@
 import { useEffect, useState } from 'react'
 import styles from '../styles/CallApi.module.scss'
-import blip from 'utils.js'
+import {GetPage} from 'utils.js'
 
 const CallApi = () => {
 
-  const [loaded, setLoaded] = useState(false)
   const [url, setUrl] = useState('place url here')
-  const [content, setContent] = useState('')
+  const [isLoaded, setLoaded] = useState(false)
+  const [content, setContent] = useState('ey yo dude')
+
+  // useEffect(() => {
+  //   console.log(url)
+  // },[url])
 
   const handleChange = (e) => {
     setUrl(e.target.value)
   }
 
-  useEffect(() => {
-    console.log('hey from effect', url, loaded, blip)
-  }, [url, loaded])
-
-  const HitApi = (e) => {
-    console.log('e', e.preventDefault())
-    // e.preventDefault()
-    console.log(loaded, 'loaded b4', blip)
+  const HitApi = async (e) => {
+    e.preventDefault()
+    await GetPage(url)
+    .then((response) => {
+      console.log('worked', response)
+    })
+    .catch((err) => {
+      console.log(err)
+      console.log('didnt work', err)
+      setContent(err)
+    })
     setLoaded(true)
-    setUrl(blip)
-    console.log(loaded, 'loaded after')
+    e.preventDefault()
   }
 
 
@@ -40,13 +46,10 @@ const CallApi = () => {
       </div>
       <div className={styles.bottomDiv}>
         {
-          loaded ?
-            <h1>loaded</h1> :
+          isLoaded ?
+            <p>{content}</p> :
             <h1 className={styles.bottomHeader}>nothing loaded</h1>
         }
-      </div>
-      <div className={styles.bottomDiv}>
-        <h1>{url}</h1>
       </div>
     </div>
   )
