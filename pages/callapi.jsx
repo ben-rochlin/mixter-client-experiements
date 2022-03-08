@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import styles from '../styles/CallApi.module.scss'
-import {GetPage} from 'utils.js'
+import { GetPage, retString } from 'utils.js'
 
 const CallApi = () => {
 
@@ -18,17 +18,10 @@ const CallApi = () => {
 
   const HitApi = async (e) => {
     e.preventDefault()
-    await GetPage(url)
-    .then((response) => {
-      console.log('worked', response)
-    })
-    .catch((err) => {
-      console.log(err)
-      console.log('didnt work', err)
-      setContent(err)
-    })
+    let resp = await GetPage(url)
+    console.log('helloOutside', resp)
+    
     setLoaded(true)
-    e.preventDefault()
   }
 
 
