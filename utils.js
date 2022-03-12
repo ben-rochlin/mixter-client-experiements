@@ -1,28 +1,33 @@
 import axios from "axios";
+import sanitizeHtml from 'sanitize-html';
+
 
 export const GetPage = async (url) => {
   console.log('begin')
   let resp = await axios.get(url)
     .then((response) => {
-      console.log('success from axios', url, response.data)
+      // console.log('success from axios', url, typeof response.data)
       return response.data
     })
     .catch((err) => {
-      console.log('err from axios')
+      // console.log('err from axios')
       return err
     })
 
-    console.log('yippy', resp.data)
-    return resp
+  // console.log('yippy', resp.data)
+  return resp
 }
 
-// export const GetPage = async (url) => {
-//   console.log('begin')
-//   let thingy = await axios.get(url)
-//   console.log('thingyinside', thingy.data)
-//   return thingy.data
-// }
 
-export const retString = () => {
-  return 'yoyoyoyo'
-}
+export const SANITIZE = (html) => {
+  const filtered = sanitizeHtml(html, {
+    allowedTags: ['article', 'h1', 'h2', 'p'],
+  })
+
+  const filterToArticleTag = filtered.substring(
+    filtered.indexOf("<article>"),
+    filtered.indexOf("</article>") + 10
+  );
+
+  return filterToArticleTag
+} 

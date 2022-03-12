@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import styles from '../styles/CallApi.module.scss'
-import { GetPage, retString } from 'utils.js'
+import { GetPage, SANITIZE } from 'utils.js'
 
 const CallApi = () => {
 
@@ -19,10 +19,11 @@ const CallApi = () => {
   const HitApi = async (e) => {
     e.preventDefault()
     let resp = await GetPage(url)
-    console.log('helloOutside', resp)
-    
+    const sanitizedResponse = SANITIZE(resp)
+    setContent(sanitizedResponse)
     setLoaded(true)
   }
+
 
 
 
@@ -40,7 +41,7 @@ const CallApi = () => {
       <div className={styles.bottomDiv}>
         {
           isLoaded ?
-            <p>{content}</p> :
+            <div dangerouslySetInnerHTML={{ __html: content }} /> :
             <h1 className={styles.bottomHeader}>nothing loaded</h1>
         }
       </div>
