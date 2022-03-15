@@ -23,11 +23,7 @@ export const SANITIZE = (html) => {
   const filtered = sanitizeHtml(html, {
     allowedTags: ['article', 'h1', 'h2', 'p'],
   })
-
-  const filterToArticleTag = filtered.substring(
-    filtered.indexOf("<article>"),
-    filtered.indexOf("</article>") + 10
-  );
+  const filterToArticleTag = filtered.substring( filtered.indexOf("<article>"), filtered.indexOf("</article>") + 10 );
 
   return filterToArticleTag
 } 
