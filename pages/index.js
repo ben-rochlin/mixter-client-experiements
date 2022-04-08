@@ -3,9 +3,14 @@ import { useRouter } from 'next/router'
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.scss'
+import { useEffect } from 'react'
 
 
 export default function Home() {
+
+  useEffect(() => {
+    console.log('hello from effect', process.env.testlocal)
+  },[])
 
   const router = useRouter()
 
@@ -30,7 +35,12 @@ export default function Home() {
 
           <a className={styles.card} onClick={() => router.push('/voicetotext')}>
             <h2>Text to Voice &rarr;</h2>
-            <p>testing voice to text</p>
+            <p>testing text to speech</p>
+          </a>
+
+          <a className={styles.card} onClick={() => router.push('/s3upload')}>
+            <h2>S3 Upload &rarr;</h2>
+            <p>testing amazon sdk s3 uploads</p>
           </a>
         </div>
       </main>
@@ -38,4 +48,14 @@ export default function Home() {
 
     </div>
   )
+}
+
+export async function getServerSideProps(){
+
+  console.log(process.env.testlocal)
+  return {
+    props:{
+      hello: 'world'
+    }
+  }
 }
