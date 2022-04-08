@@ -30,7 +30,7 @@ export const SANITIZE = (html) => {
 }
 
 
-export const listBuckets = async () => {
+export const listObjects = async () => {
   const s3Client = new S3Client({
     region: "ap-southeast-2",
     'credentials': {

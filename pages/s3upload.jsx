@@ -1,12 +1,12 @@
 import { useEffect } from "react"
-import { listBuckets } from "utils.js"
+import { listObjects } from "utils.js"
 
 
 const s3Upload = () => {
 
 useEffect(() => {
   console.log('hello')
-  listBuckets()
+  listObjects()
 },[])
 
 
